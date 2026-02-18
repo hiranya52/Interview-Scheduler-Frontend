@@ -1,0 +1,34 @@
+<div class="p-2 border-r border-purple-100">
+  <ng-container [ngSwitch]="slotType">
+    <!-- Available -->
+    <div *ngSwitchCase="'available'" class="h-full rounded-lg border-2 border-dashed border-primary/20 bg-primary/5 flex flex-col items-center justify-center text-primary p-2 cursor-pointer hover:bg-primary/10 transition-colors">
+      <span class="text-[10px] font-bold uppercase tracking-tight">Available</span>
+      <span class="material-symbols-outlined text-lg">add_circle</span>
+    </div>
+
+    <!-- Booked -->
+    <div *ngSwitchCase="'booked'" class="h-full rounded-lg bg-primary text-white p-3 shadow-lg shadow-primary/20 flex flex-col justify-between">
+      <div>
+        <div class="flex justify-between items-start">
+          <span class="text-[10px] font-bold opacity-80 uppercase">{{booking.title}}</span>
+          <span class="material-symbols-outlined text-xs">attach_file</span>
+        </div>
+        <p class="text-xs font-bold leading-tight mt-1">{{booking.candidate}}</p>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <div class="size-4 rounded-full bg-white/20 flex items-center justify-center text-[8px] font-bold">{{booking.interviewer[0]}}{{booking.interviewer.split(' ')[1][0]}}</div>
+        <span class="text-[10px] opacity-90">{{booking.interviewer}}</span>
+      </div>
+    </div>
+
+    <!-- Conflict -->
+    <div *ngSwitchCase="'conflict'" class="h-full rounded-lg bg-orange-50 border border-orange-200 text-orange-700 p-3 flex flex-col justify-between overflow-hidden">
+      <div class="flex items-center gap-1 mb-1">
+        <span class="material-symbols-outlined text-sm font-bold">warning</span>
+        <span class="text-[10px] font-bold uppercase">Conflict</span>
+      </div>
+      <p class="text-[10px] font-medium leading-tight">Interviewer at another meeting</p>
+      <button class="mt-auto text-[10px] font-bold underline text-left">Reschedule</button>
+    </div>
+  </ng-container>
+</div>

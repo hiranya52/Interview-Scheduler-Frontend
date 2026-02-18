@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CalenderRow } from "../calender-row/calender-row";
 
 @Component({
   selector: 'app-calender',
-  imports: [CommonModule],
+  imports: [CommonModule, CalenderRow],
   templateUrl: './calender.html',
   styleUrl: './calender.css',
 })
