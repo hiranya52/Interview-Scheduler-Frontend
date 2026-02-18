@@ -1,0 +1,50 @@
+<div class="bg-white dark:bg-white/5 rounded-xl border border-slate-200 dark:border-white/5 overflow-hidden shadow-sm">
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-slate-50 dark:bg-white/5 border-b border-slate-200 dark:border-white/10">
+          <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Candidate</th>
+          <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Contact</th>
+          <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-center">CV Status</th>
+          <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-200 dark:divide-white/10">
+        <tr *ngFor="let c of candidates" class="hover:bg-slate-50 dark:hover:bg-white/2 transition-colors group">
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center gap-3">
+              <div [ngClass]="'size-9 rounded-full bg-' + c.color + '-500/20 flex items-center justify-center text-' + c.color + '-500 font-bold text-sm'">{{c.initials}}</div>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 dark:text-white">{{c.name}}</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">{{c.role}}</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <p class="text-sm text-slate-600 dark:text-slate-300">{{c.email}}</p>
+            <p class="text-xs text-slate-400">{{c.phone}}</p>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-center">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+              [ngClass]="{
+                'bg-emerald-100 text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-400': c.cvStatus==='Uploaded',
+                'bg-blue-100 text-blue-800 dark:bg-blue-500/10 dark:text-blue-400': c.cvStatus==='Under Review',
+                'bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-400': c.cvStatus==='Missing',
+                'bg-slate-100 text-slate-800 dark:bg-slate-500/10 dark:text-slate-400': c.cvStatus==='Reviewed'
+              }">{{c.cvStatus}}</span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right">
+            <div class="flex items-center justify-end gap-2">
+              <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">edit</span>
+              </button>
+              <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
