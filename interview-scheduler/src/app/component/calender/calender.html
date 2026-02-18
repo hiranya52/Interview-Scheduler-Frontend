@@ -1,0 +1,13 @@
+<div class="min-w-[1000px] bg-white rounded-xl border border-purple-100 shadow-sm overflow-hidden">
+  <!-- Header -->
+  <div class="calendar-grid border-b border-purple-100 bg-purple-50/30">
+    <div class="p-4 border-r border-purple-100 text-[10px] font-bold text-slate-400 flex items-center justify-center">TIME (GMT+2)</div>
+    <div *ngFor="let day of days" class="p-4 border-r border-purple-100 text-center" [ngClass]="day.highlight ? 'bg-primary/5' : ''">
+      <span class="block text-xs font-medium" [ngClass]="day.highlight ? 'text-primary' : 'text-slate-500'">{{day.label}}</span>
+      <span class="block text-xl font-bold" [ngClass]="day.highlight ? 'text-primary underline decoration-2 underline-offset-8' : 'text-slate-700'">{{day.date}}</span>
+    </div>
+  </div>
+
+  <!-- Rows -->
+  <app-calendar-row *ngFor="let time of times" [time]="time" [days]="days"></app-calendar-row>
+</div>
