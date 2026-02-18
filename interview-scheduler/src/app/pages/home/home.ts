@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { SideBar } from "../../component/side-bar/side-bar";
 import { Header } from "../../component/header/header";
 import { Filters } from "../../component/filters/filters";
+import { Calender } from "../../component/calender/calender";
 
 @Component({
   selector: 'app-home',
-  imports: [SideBar, Header, Filters],
+  imports: [SideBar, Header, Filters, Calender],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

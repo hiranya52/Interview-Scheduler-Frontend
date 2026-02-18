@@ -9,5 +9,14 @@
   </div>
 
   <!-- Rows -->
-  <app-calender-row *ngFor="let time of times" [time]="time" [days]="days"></app-calender-row>
+  <!-- <app-calender-row *ngFor="let time of times" [time]="time" [days]="days"></app-calender-row> -->
+
+  @for (row of calendarRows; track $index) {
+  <app-calender-row
+    [time]="row.time"
+    [days]="row.days">
+  </app-calender-row>
+}
+
+
 </div>
