@@ -5,7 +5,6 @@
   </div>
 
   <!-- Day slots -->
-  <!-- <app-calendar-slot *ngFor="let day of days" [day]="day" [time]="time"></app-calendar-slot> -->
 
   <app-calendar-slot *ngFor="let d of days" [slotType]="d.slotType" [booking]="d.booking">
   </app-calendar-slot>

@@ -9,20 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class CalendarSlot {
 
-  // @Input() day!: any;
-  // @Input() time!: string;
-
-  // slotType = 'available'; // can be 'available', 'booked', 'conflict'
-
   @Input() slotType!: 'available' | 'booked' | 'conflict';
-@Input() booking: any;
-
-
-  // booking = {
-  //   title: 'UX Interview',
-  //   candidate: 'Sarah Jenkins',
-  //   interviewer: 'Marcus K.',
-  //   color: 'primary'
-  // };
+  @Input() booking: any;
 
 }

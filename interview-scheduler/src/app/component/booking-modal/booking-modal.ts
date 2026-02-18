@@ -1,12 +1,24 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BookingModelService } from '../../service/booking-model/booking-model-service';
+
 
 @Component({
   selector: 'app-booking-modal',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './booking-modal.html',
-  styleUrl: './booking-modal.css',
+  styleUrls: ['./booking-modal.css'],
 })
-export class BookingModal {
-   isOpen = false;
+export class BookingModalComponent {
+  isOpen = false;
+
+  constructor(private modalService: BookingModelService) {
+    this.modalService.isOpen$.subscribe(open => this.isOpen = open);
+  }
+
+  closeModal() {
+    this.modalService.close();
+  }
+
 }
