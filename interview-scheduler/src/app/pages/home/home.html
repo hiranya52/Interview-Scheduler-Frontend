@@ -1,12 +1,48 @@
 <div class="flex h-screen overflow-hidden">
-  <!-- Sidebar -->
+  <!-- Sidebar (always visible) -->
   <app-side-bar></app-side-bar>
 
-  <!-- Main Content -->
-  <main class="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-50">
-    <app-header></app-header>
-    <app-filters></app-filters>
-    <app-calender></app-calender>
-    <app-booking-modal></app-booking-modal>
+  <!-- DASHBOARD -->
+  <main class="flex-1 min-w-0 overflow-hidden bg-slate-50">
+
+     @switch (currentView$ | async) {
+
+       @case ('Dashboard') {
+        <div class="p-8">
+          <!-- <app-booking></app-booking> -->
+        </div>
+       }
+
+      <!-- CALENDER -->
+       @case ('Calendar') {
+        <div class="p-8">
+          <app-booking></app-booking>
+        </div>
+      }
+
+      <!-- CANDIDATES -->
+       @case ('Candidates') {
+        <div class="p-8">
+
+        </div>
+      }
+
+      <!-- INTERVIEWER -->
+       @case ('Interviewer') {
+        <div class="p-8">
+          <!-- <app-menu-management></app-menu-management> -->
+        </div>
+      }
+
+      <!-- SETTINGS -->
+       @case ('Settings') {
+        <div class="p-8">
+          <!-- <app-menu-management></app-menu-management> -->
+        </div>
+      }
+    }
+
   </main>
+
 </div>
+

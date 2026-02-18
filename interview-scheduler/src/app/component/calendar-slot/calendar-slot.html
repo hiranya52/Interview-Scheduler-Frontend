@@ -10,14 +10,14 @@
     <div *ngSwitchCase="'booked'" class="h-full rounded-lg bg-primary text-white p-3 shadow-lg shadow-primary/20 flex flex-col justify-between">
       <div>
         <div class="flex justify-between items-start">
-          <span class="text-[10px] font-bold opacity-80 uppercase">{{booking.title}}</span>
+          <span class="text-[10px] font-bold opacity-80 uppercase">{{booking?.title}}</span>
           <span class="material-symbols-outlined text-xs">attach_file</span>
         </div>
-        <p class="text-xs font-bold leading-tight mt-1">{{booking.candidate}}</p>
+        <!-- <p class="text-xs font-bold leading-tight mt-1">{{booking.candidate}}</p> -->
       </div>
       <div class="flex items-center gap-1.5">
-        <div class="size-4 rounded-full bg-white/20 flex items-center justify-center text-[8px] font-bold">{{booking.interviewer[0]}}{{booking.interviewer.split(' ')[1][0]}}</div>
-        <span class="text-[10px] opacity-90">{{booking.interviewer}}</span>
+        <!-- <div class="size-4 rounded-full bg-white/20 flex items-center justify-center text-[8px] font-bold">{{booking.interviewer[0]}}{{booking.interviewer.split(' ')[1][0]}}</div> -->
+        <!-- <span class="text-[10px] opacity-90">{{booking.interviewer}}</span> -->
       </div>
     </div>
 

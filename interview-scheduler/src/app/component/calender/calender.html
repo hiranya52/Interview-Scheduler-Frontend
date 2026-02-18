@@ -10,12 +10,13 @@
 
   <!-- Rows -->
 
-  @for (row of calendarRows; track $index) {
   <app-calender-row
-    [time]="row.time"
-    [days]="row.days">
-  </app-calender-row>
-}
+  *ngFor="let item of SlotsList; let i = index"
+  [time]="item.time"
+  [days]="item.days">
+</app-calender-row>
+
+
 
 
 </div>

@@ -14,7 +14,7 @@ export class Header {
   constructor(private modalService: BookingModelService) {}
 
   openModal() {
-    this.modalService.open()
+    this.modalService.open();
   }
 
 }

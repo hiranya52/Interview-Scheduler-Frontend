@@ -1,17 +1,24 @@
 import { Component } from '@angular/core';
+import { Booking } from "../../component/booking/booking";
 import { SideBar } from "../../component/side-bar/side-bar";
-import { Header } from "../../component/header/header";
-import { Filters } from "../../component/filters/filters";
-import { Calender } from "../../component/calender/calender";
-import { BookingModalComponent } from '../../component/booking-modal/booking-modal';
+import { CommonModule } from '@angular/common';
+import { ViewService } from '../../view/view-service';
+import { Observable } from 'rxjs';
 
 
 @Component({
   selector: 'app-home',
-  imports: [SideBar, Header, Filters, Calender, BookingModalComponent],
+  imports: [Booking, SideBar,CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
+
+  public currentView$: Observable<string>;
+
+  constructor(private viewService: ViewService) {
+    this.currentView$ = this.viewService.currentView$;
+  }
+
 
 }

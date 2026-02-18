@@ -1,17 +1,80 @@
-<div [ngClass]="{'hidden': !isOpen, 'visible': isOpen}" class="modal fixed inset-0 bg-deep-purple/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-  <div class="bg-white w-full max-w-lg rounded-xl shadow-2xl overflow-hidden border border-slate-200">
-    <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-purple-50/50">
-      <h3 class="text-lg font-bold text-deep-purple">Book New Interview</h3>
-      <button class="text-slate-400 hover:text-slate-600">
+<div  [ngClass]="{'hidden': !isOpen, 'visible': isOpen}" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+  <div class="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] border-t-4 border-primary">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/30">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white">Book New Interview</h2>
+      <button (click)="closeModal()" class="text-slate-400 hover:text-primary transition-colors">
         <span class="material-symbols-outlined">close</span>
       </button>
     </div>
-    <div class="p-6 space-y-4">
-      <!-- Form Fields -->
+
+    <!-- Body -->
+    <div class="overflow-y-auto flex-1 p-6 space-y-6">
+
+      <!-- Candidate Selection -->
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Select Candidate</label>
+        <select class="w-full h-12 pl-4 pr-10 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                [(ngModel)]="selectedCandidateId">
+          <option value="">Select candidate...</option>
+          <option *ngFor="let candidate of candidates" [value]="candidate.id">{{candidate.name}}</option>
+        </select>
+      </div>
+
+      <!-- Interviewer Selection -->
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Select Interviewer</label>
+        <select class="w-full h-12 pl-4 pr-10 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                [(ngModel)]="selectedInterviewerId">
+          <option value="">Select interviewer...</option>
+          <option *ngFor="let interviewer of interviewers" [value]="interviewer.id">
+            {{interviewer.name}}{{interviewer.role ? ' (' + interviewer.role + ')' : ''}}
+          </option>
+        </select>
+      </div>
+
+      <!-- Date Picker -->
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Interview Date</label>
+        <input type="date" class="w-full h-12 px-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+               [(ngModel)]="selectedDate"/>
+      </div>
+
+      <!-- Available Slots -->
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Available Slots</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button *ngFor="let slot of slots"
+                  [disabled]="slot.booked"
+                  [ngClass]="{
+                    'bg-red-50 text-red-300 line-through cursor-not-allowed opacity-50': slot.booked,
+                    'border-2 border-primary bg-primary/5 text-primary': !slot.booked && slot.time === selectedTime,
+                    'border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white': !slot.booked && slot.time !== selectedTime
+                  }"
+                  class="h-10 text-xs font-medium rounded-lg transition-colors"
+                  (click)="selectedTime = slot.time">
+            {{slot.time}}
+          </button>
+        </div>
+      </div>
+
+      <!-- Upload Candidate CV -->
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Candidate CV / Portfolio</label>
+        <input type="file" class="w-full h-12 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"/>
+      </div>
+
     </div>
-    <div class="p-6 border-t border-slate-100 flex justify-end gap-3 bg-slate-50">
-      <button class="px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-      <button class="px-6 py-2 bg-primary text-white text-sm font-bold rounded-lg shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors">Confirm Booking</button>
+
+    <!-- Footer Buttons -->
+    <div class="px-6 py-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 flex flex-col-reverse sm:flex-row justify-end gap-3">
+      <button (click)="closeModal()" class="flex h-12 items-center justify-center rounded-lg px-6 text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors">
+        Cancel
+      </button>
+      <button class="flex h-12 items-center justify-center rounded-lg bg-primary px-8 text-sm font-bold text-white shadow-lg shadow-primary/20 hover:bg-primary/95 transition-all">
+        Confirm Booking
+      </button>
     </div>
   </div>
 </div>
