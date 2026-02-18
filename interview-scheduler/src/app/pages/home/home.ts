@@ -4,11 +4,12 @@ import { SideBar } from "../../component/side-bar/side-bar";
 import { CommonModule } from '@angular/common';
 import { ViewService } from '../../view/view-service';
 import { Observable } from 'rxjs';
+import { Candidate } from "../../component/candidate/candidate";
 
 
 @Component({
   selector: 'app-home',
-  imports: [Booking, SideBar,CommonModule],
+  imports: [Booking, SideBar, CommonModule, Candidate],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
